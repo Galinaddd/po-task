@@ -5,7 +5,7 @@ renderMarkup();
 const button = document.querySelector("button");
 const input = document.getElementById("fileInput");
 
-button.addEventListener("click", onCliсk);
+button.addEventListener("click", onClick);
 input.addEventListener("change", onChange);
 
 let fileContent = ``;
@@ -88,11 +88,11 @@ function renderMarkup({
             <li class="item"><span>середнє арифметичне значення</span> <span class="result">${
               serArifm ?? ""
             }</span></li>
-            <li class="item"><span>найбільшу послідовність чисел</span> <span class="result">${
+            <li class="item"><span>найбільшу послідовність чисел, яка збільшується </span> <span class="result">${
               incSeq ?? ""
             }</span></li>
             <li class="item"><span>найбільшу
-        послідовність чисел </span><span class="result">${
+        послідовність чисел,яка зменьшується  </span><span class="result">${
           decrSeq ?? ""
         }</span></li>
         </ol>
@@ -141,11 +141,13 @@ function getIncreasingSequence(arr, direction = "UP") {
   return incrSequence;
 }
 
-function onCliсk(event) {
-  alert(
-    "необхідно почекати близько 30 секю Ви ртпимаєте результат після обробки"
-  );
-  console.log("onCliсk");
+async function onClick(event) {
+  console.dir(button.textContent);
+
+  button.textContent = "Дані обробляються...";
+  console.dir(button.textContent);
+  await new Promise((resolve) => setTimeout(resolve, 0));
+  await new Promise((resolve) => setTimeout(resolve, 0));
   const startTime = new Date();
   getArrayFromFile(fileContent);
 
@@ -154,8 +156,9 @@ function onCliсk(event) {
   console.log("Time taken:", endTime - startTime, "milliseconds");
   result.time = (endTime - startTime) / 1000;
   console.log("RES", result);
-  input.value = "";
+
   renderMarkup(result);
+  input.value = "";
 }
 
 function onChange(event) {

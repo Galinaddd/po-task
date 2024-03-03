@@ -25,5 +25,7 @@ body {
 }
 
 .result {
+  /* display: flex;
+  flex-wrap: wrap; */
   margin-left: 20px;
 }
