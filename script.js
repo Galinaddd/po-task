@@ -2,7 +2,7 @@ const container = document.querySelector(".container");
 const res = document.querySelector(".status");
 renderMarkup();
 
-const button = document.querySelector("button");
+let button = document.querySelector("button");
 const input = document.getElementById("fileInput");
 
 button.addEventListener("click", onClick);
@@ -98,13 +98,15 @@ function renderMarkup({
         </ol>
              </p>
       <input type="file" id="fileInput"/>
-      <button type="button" class="button">Визначити</button>`;
+      <button type="button" class="button" >Визначити</button>`;
   container.innerHTML = markup;
   if (time) {
     container.innerHTML += `<p>Обробка зайняла <span class="result">${
       time ?? ""
     } секунд</span></p>`;
   }
+  let button = document.querySelector("button");
+  button.addEventListener("click", onClick);
 }
 
 function getIncreasingSequence(arr, direction = "UP") {
@@ -147,7 +149,7 @@ async function onClick(event) {
   button.textContent = "Дані обробляються...";
   console.dir(button.textContent);
   await new Promise((resolve) => setTimeout(resolve, 0));
-  await new Promise((resolve) => setTimeout(resolve, 0));
+
   const startTime = new Date();
   getArrayFromFile(fileContent);
 
